@@ -23,5 +23,18 @@ axios(url).then(response => {
   newsPosts.each(function() {
     // selected the previous element
     const a = $(this).prev();
+    // getting the children elements of subtext
+    const subtext = a
+      .parent()
+      .parent()
+      .next()
+      .children(".subtext")
+      .children();
+
+    // obtains the rank by getting the element that is two levels above a
+    const rank = a
+      .parent()
+      .parent()
+      .text();
   });
 });
