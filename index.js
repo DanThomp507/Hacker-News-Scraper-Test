@@ -5,19 +5,24 @@ const cheerio = require("cheerio");
 const url = "https://news.ycombinator.com/";
 
 // creating an instance of axios and passing it the Hacker News url as an argument
-axios(url).then(response => {
-  // we get the html data
-  const html = response.data;
-  // we load the html data into cheerio
-  const $ = cheerio.load(html);
+axios(url)
+  .then(response => {
+    // we get the html data
+    const html = response.data;
+    console.log(getNews(html));
+  })
+  .catch(error => {
+    console.log(error);
+  });
 
-  //selecting each span element with the class called comhead and setting
-  //that to a variable
-
-  const newsPosts = $("span.comhead");
-
+const getNews = html => {
   // setting an empty array to push the results into
   const data = [];
+  // we load the html data into cheerio
+  const $ = cheerio.load(html);
+  //selecting each span element with the class called comhead and setting
+  //that to a variable
+  const newsPosts = $("span.comhead");
 
   // iterating over the objects in the span element
   newsPosts.each(function() {
@@ -36,5 +41,32 @@ axios(url).then(response => {
       .parent()
       .parent()
       .text();
+
+    // gets the title by parsing the link's title
+    const title = a.text();
+    // gets the uri by getting the href attribute from the link
+    const uri = a.attr("href");
+
+    // gets author, points and comments from the children elements
+    const author = $(subtext)
+      .eq(1)
+      .text();
+    const points = $(subtext)
+      .eq(0)
+      .text();
+    const comments = $(subtext)
+      .eq(5)
+      .text();
+    // pushes the object into the data array
+    data.push({
+      title: title,
+      uri: uri,
+      author: author,
+      points: points,
+      comments: comments,
+      rank: parseInt(rank)
+    });
   });
-});
+  return data;
+  console.log(data);
+};
