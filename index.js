@@ -18,4 +18,10 @@ axios(url).then(response => {
 
   // setting an empty array to push the results into
   const data = [];
+
+  // iterating over the objects in the span element
+  newsPosts.each(function() {
+    // selected the previous element
+    const a = $(this).prev();
+  });
 });
