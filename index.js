@@ -70,6 +70,7 @@ const getNews = html => {
   return data;
   console.log(data);
 };
+
 // checks to see if author is a string greater than 0 and less than 256 characters
 const checkAuthor = author => {
   if (author.length < 256 && author.length > 0) {
@@ -94,5 +95,13 @@ const checkURI = uri => {
     return uri;
   } else {
     return "invalid";
+  }
+};
+// checks to see if comments are valid
+const checkPostComments = comments => {
+  if (comments === "discuss" || parseInt(comments) <= 0) {
+    return 0;
+  } else {
+    return parseInt(comments);
   }
 };
