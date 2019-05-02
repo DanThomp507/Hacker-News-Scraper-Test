@@ -61,7 +61,7 @@ const getNews = html => {
     data.push({
       title: title,
       uri: uri,
-      author: author,
+      author: checkAuthor(author),
       points: points,
       comments: comments,
       rank: parseInt(rank)
@@ -69,4 +69,21 @@ const getNews = html => {
   });
   return data;
   console.log(data);
+};
+// checks to see if author is a string greater than 0 and less than 256 characters
+const checkAuthor = author => {
+  if (author.length < 256 && author.length > 0) {
+    return author;
+  } else {
+    return "invalid";
+  }
+};
+
+// checks to see if title is a string greater than 0 and less than 256 characters
+const checkTitle = title => {
+  if (title.length < 256 && title.length > 0) {
+    return title;
+  } else {
+    return "invalid";
+  }
 };
