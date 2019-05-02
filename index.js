@@ -59,8 +59,8 @@ const getNews = html => {
       .text();
     // pushes the object into the data array
     data.push({
-      title: title,
-      uri: uri,
+      title: checkTitle(title),
+      uri: checkURI(uri),
       author: checkAuthor(author),
       points: points,
       comments: comments,
@@ -83,6 +83,15 @@ const checkAuthor = author => {
 const checkTitle = title => {
   if (title.length < 256 && title.length > 0) {
     return title;
+  } else {
+    return "invalid";
+  }
+};
+// checks to see if uri is valid using regex
+const checkURI = uri => {
+  const regexp = /^(([^:/?#]+):)\/\/(([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/;
+  if (regexp.test(uri)) {
+    return uri;
   } else {
     return "invalid";
   }
