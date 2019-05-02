@@ -1,6 +1,7 @@
 // loading all of the module dependencies
 const axios = require("axios");
 const cheerio = require("cheerio");
+const program = require("commander");
 
 const URL = "https://news.ycombinator.com";
 
@@ -10,7 +11,7 @@ const getHackerNewsHTML = page => {
     .then(response => {
       // we get the html data
       const html = response.data;
-      console.log(getNews(html));
+      console.log(getNewsPosts(html));
     })
     .catch(error => {
       console.log(error);
