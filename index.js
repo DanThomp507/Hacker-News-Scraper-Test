@@ -2,20 +2,22 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const url = "https://news.ycombinator.com/";
+const URL = "https://news.ycombinator.com";
 
-// creating an instance of axios and passing it the Hacker News url as an argument
-axios(url)
-  .then(response => {
-    // we get the html data
-    const html = response.data;
-    console.log(getNews(html));
-  })
-  .catch(error => {
-    console.log(error);
-  });
+const getHackerNewsHTML = page => {
+  // creating an instance of axios and passing it the Hacker News url as an argument
+  axios(`${URL}/news?p=${page}`)
+    .then(response => {
+      // we get the html data
+      const html = response.data;
+      console.log(getNews(html));
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
 
-const getNews = html => {
+const getNewsPosts = html => {
   // setting an empty array to push the results into
   const data = [];
   // we load the html data into cheerio
@@ -101,7 +103,7 @@ const checkURI = uri => {
 
 // checks to see if comments are valid
 const checkPostComments = comments => {
-  if (parseInt(comments) <= 0|| comments === "" || comments === "discuss") {
+  if (parseInt(comments) <= 0 || comments === "" || comments === "discuss") {
     return 0;
   } else {
     return parseInt(comments);
