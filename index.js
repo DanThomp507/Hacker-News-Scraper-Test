@@ -63,7 +63,7 @@ const getNews = html => {
       uri: checkURI(uri),
       author: checkAuthor(author),
       points: points,
-      comments: comments,
+      comments: checkPostComments(comments),
       rank: parseInt(rank)
     });
   });
