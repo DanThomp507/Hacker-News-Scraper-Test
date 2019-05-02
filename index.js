@@ -1,13 +1,15 @@
+#!/usr/bin/env node
+
 // loading all of the module dependencies
 const axios = require("axios");
 const cheerio = require("cheerio");
 const program = require("commander");
 
-const URL = "https://news.ycombinator.com";
+const url = "https://news.ycombinator.com";
 
 const getHackerNewsHTML = page => {
   // creating an instance of axios and passing it the Hacker News url as an argument
-  axios(`${URL}/news?p=${page}`)
+  axios(url)
     .then(response => {
       // we get the html data
       const html = response.data;
@@ -73,6 +75,16 @@ const getNewsPosts = html => {
   return data;
   console.log(data);
 };
+
+// commander function
+
+program
+  .option("-p, --posts [value]", "Number of Posts");
+    .action(args =>
+      getHackerNewsHTML(args.posts)
+      .then(html => getPosts(html, args.posts))
+    )
+program.parse(process.argv)
 
 // checks to see if author is a string greater than 0 and less than 256 characters
 const checkPostAuthor = author => {
