@@ -59,10 +59,10 @@ const getNews = html => {
       .text();
     // pushes the object into the data array
     data.push({
-      title: checkTitle(title),
+      title: checkPostTitle(title),
       uri: checkURI(uri),
-      author: checkAuthor(author),
-      points: points,
+      author: checkPostAuthor(author),
+      points: checkPostPoints(points),
       comments: checkPostComments(comments),
       rank: parseInt(rank)
     });
@@ -72,7 +72,7 @@ const getNews = html => {
 };
 
 // checks to see if author is a string greater than 0 and less than 256 characters
-const checkAuthor = author => {
+const checkPostAuthor = author => {
   if (author.length < 256 && author.length > 0) {
     return author;
   } else {
@@ -81,13 +81,14 @@ const checkAuthor = author => {
 };
 
 // checks to see if title is a string greater than 0 and less than 256 characters
-const checkTitle = title => {
+const checkPostTitle = title => {
   if (title.length < 256 && title.length > 0) {
     return title;
   } else {
     return "invalid";
   }
 };
+
 // checks to see if uri is valid using regex
 const checkURI = uri => {
   const regexp = /^(([^:/?#]+):)\/\/(([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/;
@@ -97,11 +98,21 @@ const checkURI = uri => {
     return "invalid";
   }
 };
+
 // checks to see if comments are valid
 const checkPostComments = comments => {
   if (comments === "discuss" || parseInt(comments) <= 0) {
     return 0;
   } else {
     return parseInt(comments);
+  }
+};
+
+// checks to see if points are valid
+const checkPostPoints = points => {
+  if (parseInt(points) <= 0) {
+    return 0;
+  } else {
+    return parseInt(points);
   }
 };
