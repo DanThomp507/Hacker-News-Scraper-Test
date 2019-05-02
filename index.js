@@ -79,10 +79,10 @@ const getNewsPosts = html => {
 // commander function
 
 program
-  .option("-p, --posts [value]", "Number of Posts");
+  .option("-p, --posts [value]", "Number of Posts")
     .action(args =>
       getHackerNewsHTML(args.posts)
-      .then(html => getPosts(html, args.posts))
+      .then(html => getNewsPosts(html, args.posts))
     )
 program.parse(process.argv)
 
