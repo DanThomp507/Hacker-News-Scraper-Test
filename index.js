@@ -25,7 +25,7 @@ const getNews = html => {
   const newsPosts = $("span.comhead");
 
   // iterating over the objects in the span element
-  newsPosts.each(function() {
+  newsPosts.each(function(i, el) {
     // selected the previous element
     const a = $(this).prev();
     // getting the children elements of subtext
@@ -101,7 +101,7 @@ const checkURI = uri => {
 
 // checks to see if comments are valid
 const checkPostComments = comments => {
-  if (comments === "discuss" || parseInt(comments) <= 0) {
+  if (parseInt(comments) <= 0|| comments === "" || comments === "discuss") {
     return 0;
   } else {
     return parseInt(comments);
