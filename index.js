@@ -66,8 +66,10 @@ const getNewsPosts = html => {
     const comments = $(subtext)
       .eq(5)
       .text();
+
     // pushes the object into the data array
-    data.push({
+    let postObject =
+      data.push({
       title: checkPostTitle(title),
       uri: checkURI(uri),
       author: checkPostAuthor(author),
@@ -85,7 +87,7 @@ const getNewsPosts = html => {
 
 program
   .option("-p, --posts [value]", "Number of Posts")
-  .action(args => getHackerNewsHTML(args.posts));
+  .action(args => getHackerNewsHTML(args.posts)
 program.parse(process.argv);
 
 // checks to see if author is a string greater than 0 and less than 256 characters
