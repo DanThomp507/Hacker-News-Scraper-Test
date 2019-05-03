@@ -21,12 +21,12 @@ const getPages = posts => {
 
 const getNewsPosts = (html, post) => {
   // setting an empty array to push the results into
-  let data = [];
+  const data = [];
   // we load the html data into cheerio
-  let $ = cheerio.load(html);
+  const $ = cheerio.load(html);
   //selecting each span element with the class called comhead and setting
   //that to a variable
-  let newsPosts = $("span.comhead");
+  const newsPosts = $("span.comhead");
 
   // iterating over the objects in the span element
   newsPosts.each(function(i, el) {
