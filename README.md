@@ -2,15 +2,15 @@
 
 ## Installation Instructions
 * git clone https://github.com/DanThomp507/Hacker-News-Scraper-Test.git
-* cd into the project directory
+* cd into project directory
 * run `npm run install-hacker`
 
 ## How to Run
 
 * After installation, all you have to do is type `hackernews
---posts [number of posts]` or `hackernews -p [number of posts]`
-* Running these commands will return the requested number of posts in
-the console
+--posts [page number]` or `hackernews -p [page number]`
+* Running these commands will return the requested page number in the console
+* Each page contains 30 posts
 * You can also run `hackernews --help` for automated help
 
 ## Libraries Used and Why
