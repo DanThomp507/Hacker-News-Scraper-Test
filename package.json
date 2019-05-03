@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install-hacker": "npm link && npm i -g",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
