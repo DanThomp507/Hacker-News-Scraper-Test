@@ -11,7 +11,7 @@
 --posts [number of posts]` or `hackernews -p [number of posts]`
 * Running these commands will return the requested number of posts in
 the console
-
+* You can also run `hackernews --help` for automated help
 
 ## Libraries Used and Why
 - Axios: a Javascript library that is used to make HTTP requests from Node.js.
