@@ -5,11 +5,10 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const program = require("commander");
 
-const url = "https://news.ycombinator.com";
-
 const getHackerNewsHTML = page => {
   // creating an instance of axios and passing it the Hacker News url as an argument
-  axios(url)
+  axios
+    .get(`https://news.ycombinator.com/news?p=${page}`)
     .then(response => {
       // we get the html data
       const html = response.data;
@@ -18,6 +17,11 @@ const getHackerNewsHTML = page => {
     .catch(error => {
       console.log(error);
     });
+};
+const getPages = posts => {
+  Array(Math.round(posts / 30))
+    .concat()
+    .map((i, el) => el + 1);
 };
 
 const getNewsPosts = html => {
@@ -72,19 +76,17 @@ const getNewsPosts = html => {
       rank: parseInt(rank)
     });
   });
-  return data;
-  console.log(data);
+  if (data.length > 0) {
+    return data;
+  }
 };
 
 // commander function
 
 program
   .option("-p, --posts [value]", "Number of Posts")
-    .action(args =>
-      getHackerNewsHTML(args.posts)
-      .then(html => getNewsPosts(html, args.posts))
-    )
-program.parse(process.argv)
+  .action(args => getHackerNewsHTML(args.posts));
+program.parse(process.argv);
 
 // checks to see if author is a string greater than 0 and less than 256 characters
 const checkPostAuthor = author => {
