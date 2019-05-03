@@ -18,6 +18,7 @@ const getHackerNewsHTML = page => {
       console.log(error);
     });
 };
+// function that creates an array of pages
 const getPages = posts => {
   Array(Math.round(posts / 30))
     .concat()
@@ -68,8 +69,7 @@ const getNewsPosts = html => {
       .text();
 
     // pushes the object into the data array
-    let postObject =
-      data.push({
+    let postObject = data.push({
       title: checkPostTitle(title),
       uri: checkURI(uri),
       author: checkPostAuthor(author),
@@ -86,8 +86,9 @@ const getNewsPosts = html => {
 // commander function
 
 program
-  .option("-p, --posts [value]", "Number of Posts")
-  .action(args => getHackerNewsHTML(args.posts)
+  .option("-p, --posts [value]", "Number of Posts", 30)
+  .action(args => getHackerNewsHTML(args.posts));
+
 program.parse(process.argv);
 
 // checks to see if author is a string greater than 0 and less than 256 characters
