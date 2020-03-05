@@ -1,4 +1,4 @@
-## Hacker News Web Scraper Test
+## Hacker News Web Scraping
 
 ## Installation Instructions
 * git clone https://github.com/DanThomp507/Hacker-News-Scraper-Test.git
