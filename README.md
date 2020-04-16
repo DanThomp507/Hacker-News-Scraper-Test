@@ -1,4 +1,4 @@
-## Hacker News Web Scraper Test
+## Hacker News Web Scraping
 
 A CLI app that allows users to scrape news stories from Hacker News
 
