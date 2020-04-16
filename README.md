@@ -1,19 +1,22 @@
 ## Hacker News Web Scraper Test
 
+A CLI app that allows users to scrape news stories from Hacker News
+
 ## Installation Instructions
+
 * git clone https://github.com/DanThomp507/Hacker-News-Scraper-Test.git
 * cd into project directory
 * run `npm run install-hacker`
 
 ## How to Run
 
-* After installation, all you have to do is type `hackernews
---posts [page number]` or `hackernews -p [page number]`
+* After installation, all you have to do is type `hackernews -p [page number]` in your terminal (in the root directory)
 * Running these commands will return the requested page number in the console
 * Each page contains 30 posts
 * You can also run `hackernews --help` for automated help
 
 ## Libraries Used and Why
+
 - Axios: a Javascript library that is used to make HTTP requests from Node.js.
 I used Axios because it parses JSON responses and supports promises by default.
 It is also easy-to-use and improves efficiency.
